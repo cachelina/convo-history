@@ -1,0 +1,11 @@
+<%= button_to label,
+  project_status_histories_path(project),
+  method: :post,
+  params: {
+    status_history: {
+      previous_status: prev_status,
+      new_status: new_status
+    }
+  },
+  class: "button" 
+%>

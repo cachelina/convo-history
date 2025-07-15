@@ -1,0 +1,40 @@
+<div class="container">
+  <h1><%= @project.name %></h1>
+  <% if @project.status == "open" %>
+    <%= render "shared/status_button", project: @project, label: "Close Project", prev_status: "open", new_status: "closed" %>
+  <% else %>
+    <%= render "shared/status_button", project: @project, label: "Reopen Project", prev_status: "closed", new_status: "open" %>
+  <% end %>
+
+
+  <div class='history'>
+    <% @history.each do |item| %>
+      <% if item.is_a?(Comment) %>
+        <div class="history-item">
+          <p><%= item.body %></p>
+          <div>
+            <%= item.user.name %> at
+            <%= item.pretty_date %>
+          </div>
+        </div>
+
+      <% else %>
+          <div class="history-item">
+            <%= item.user.name %> changed status from <%= item.previous_status %> to <%= item.new_status %> on 
+            <%= item.pretty_date %>
+          </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if @project.status === "open" %>
+    <%=  form_with model: [@project, Comment.new] do |form| %>
+      <div>
+        <%= form.text_area :body, placeholder: 'add new comment' %>
+        <%= form.submit "Post" %>
+      </div>
+    <% end %>
+  <% else %>
+    <div>No gains here the project is closed! Swole you later</div>
+  <% end %>
+</div>

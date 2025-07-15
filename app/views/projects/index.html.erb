@@ -1,0 +1,11 @@
+<div class='container'>
+  <h1> Health Projects </h1>
+  <div id="projects">
+    <% @projects.each do |project| %>
+
+    <div class="project-info">
+      <%= link_to project.name, project_path(project) %>
+    </div>
+    <% end %>
+  </div>
+</div>

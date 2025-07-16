@@ -48,3 +48,29 @@ StatusHistory.create!(
 project.update!(status: "closed")
 
 puts "🌱 Seeded #{User.count} users, #{Project.count} project, #{Comment.count} comments, #{StatusHistory.count} status history record"
+
+
+# Create another project
+project2 = Project.create!(
+  name: "10K Steps-a-Day Accountability Squad",
+  status: "open",
+  user: yasz
+)
+
+# Comments for new project
+Comment.create!(body: "Forgot my Fitbit but I *felt* like I walked a lot. That counts, right?", user: yasz, project: project2)
+Comment.create!(body: "Treadmill died at 8,732 steps. I carried it the rest of the way.", user: barry, project: project2)
+Comment.create!(body: "Did laps around my kitchen during a Zoom call. Innovation.", user: betty, project: project2)
+Comment.create!(body: "My dog hid from me when I said 'walk.' We’re both tired.", user: gavin, project: project2)
+
+# Status change for new project
+StatusHistory.create!(
+  previous_status: "open",
+  new_status: "closed",
+  user: yasz,
+  project: project2,
+  created_at: Time.now + 3.days
+)
+
+# Final status update
+project2.update!(status: "closed")

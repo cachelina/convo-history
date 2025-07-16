@@ -1,5 +1,6 @@
 <div class="container">
   <h1><%= @project.name %></h1>
+  
   <% if @project.status == "open" %>
     <%= render "shared/status_button", project: @project, label: "Close Project", prev_status: "open", new_status: "closed" %>
   <% else %>

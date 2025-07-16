@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-
   def index
     @projects = Project.all
     puts "projects = #{@projects}"
@@ -11,6 +10,5 @@ class ProjectsController < ApplicationController
     @status_histories = @project.status_histories.order(:created_at)
     @history = (@comments + @status_histories).sort_by(&:created_at)
   end 
-
 
 end 
